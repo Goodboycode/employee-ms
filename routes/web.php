@@ -8,8 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Store
 Route::get('/stores', [StoreController::class, 'index'])->name('stores.index');
 
-
+// Employee
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
