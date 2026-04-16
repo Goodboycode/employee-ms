@@ -5,11 +5,11 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/layouts/index');
 });
 
 
-Route::get('/stores', [StoreController::class, 'index'])->name('stores.index');
-
+// 
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+Route::get('/stores', [StoreController::class, 'index'])->name('stores.index');

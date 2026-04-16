@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Employee;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -11,15 +12,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $stores = Store::all();
+        return view('store.index', compact('stores'));
     }
 
     /**
@@ -27,7 +21,14 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'store_id' => 'required|unique:stores, store_id',
+            'name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255'
+        ]);
+
+        Store::create($validatedData);
+        return redirect()->route('stores.index')->with('success', 'Store created successfully.');
     }
 
     /**
@@ -35,7 +36,8 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $store = Store::findOrFail($id);
+        return view('store.show', compact('store'));
     }
 
     /**
