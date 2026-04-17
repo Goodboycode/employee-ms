@@ -14,7 +14,7 @@ class StoreController extends Controller
     {
         // Fetch all employees and pass them to the index view
         $store = Store::all();
-        return view('store.index', compact('stores'));
+        return view('stores.index', compact('stores'));
     }
 
     /**
@@ -22,8 +22,8 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('store.create');
-        
+        // store form in the UI 
+        return view('stores.create');
     }
 
     /**
@@ -33,7 +33,7 @@ class StoreController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'store_id' => 'required|unique:stores, store_id',
+            'store_id' => 'required|unique:stores,store_id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255'
         ]);
@@ -51,7 +51,7 @@ class StoreController extends Controller
         // $task is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
 
-        return view('store.show', compact('store'));
+        return view('stores.show', compact('store'));
     }
 
     /**
@@ -61,7 +61,7 @@ class StoreController extends Controller
     {
         // $task is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-        return view('store.edit', compact('store'));
+        return view('stores.edit', compact('store'));
     }
 
     /**
@@ -77,7 +77,7 @@ class StoreController extends Controller
 
         // Update the employee and redirect back to the employee list with a success message
         $store->update($validatedData);
-        return redirect()->route('store.index')->with('success', 'Store updated successfully');
+        return redirect()->route('stores.index')->with('success', 'Store updated successfully');
     }
 
     /**
@@ -85,6 +85,8 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        // The store is permanently removed from the 'stores' table and redirected back to the store list with a success message
+        $store->delete();
+        return redirect()->route('stores.index')->with('success','store successfully deleted');
     }
 }
