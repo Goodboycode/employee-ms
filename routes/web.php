@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\EmployeeController;
 
-Route::get('/', function () {
-    return view('employees.index');
-});
+Route::get('/', [EmployeeController::class, 'index']);
+Route::get('/stores', [StoreController::class, 'index']);
 
 
 Route::resource('employees',EmployeeController::class);

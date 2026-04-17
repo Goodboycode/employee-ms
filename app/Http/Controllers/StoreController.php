@@ -13,7 +13,7 @@ class StoreController extends Controller
     public function index()
     {
         // Fetch all employees and pass them to the index view
-        $store = Store::all();
+        $stores = Store::all();
         return view('stores.index', compact('stores'));
     }
 

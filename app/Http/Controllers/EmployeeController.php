@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -22,8 +23,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        $stores = Store::all();
         // employee form in the UI
-        return view('employees.create');
+        return view('employees.create', compact('stores'));
     }
 
     /**
@@ -102,4 +104,6 @@ class EmployeeController extends Controller
         $employee->delete();
         return redirect()->route('employees.index')->with('success','Employee successfully deleted');
     }
+
+
 }
