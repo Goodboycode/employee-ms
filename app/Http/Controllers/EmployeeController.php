@@ -14,8 +14,9 @@ class EmployeeController extends Controller
     public function index()
     {
         // Fetch all employees and pass them to the index view
+        $stores = Store::all();
         $employees = Employee::all();
-        return view('employees.index', compact('employees'));
+        return view('employees.index', compact('employees', 'stores'));
     }
 
     /**
@@ -23,8 +24,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $stores = Store::all();
         // employee form in the UI
+        $stores = Store::all();
+
         return view('employees.create', compact('stores'));
     }
 
@@ -71,7 +73,8 @@ class EmployeeController extends Controller
     {
         // $employee is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-        return view('employees.edit', compact('employee'));
+        $stores = Store::all();
+        return view('employees.edit', compact('employee','stores'));
     }
 
     /**

@@ -5,7 +5,7 @@
 @section('content')
     <div class='d-flex justify-content-between align-items-center'>
         <h1>Employee List</h1>
-        <a href='{{ route('employees.create') }}'class='btn btn-primary'>Add Employee</a>
+        <a href='{{ route('employees.create') }}' class='btn btn-primary'>Add Employee</a>
     </div>
     <table class='table table-striped'>
         <thead>
@@ -25,9 +25,15 @@
                         <td>{{ $employee->employee_id }}</td>
                         <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
                         <td>{{ $employee->email }}</td>
-                        <td>{{ $employee->store_id }}</td>
+                        @foreach ($stores as $store)
+                            @if ($store->store_id == $employee->store_id)
+                                <td>{{ $store->name }}</td>
+                            @endif
+                        @endforeach
                         <td>{{ $employee->position }}</td>
-                        <td>{{ $employee->is_active ? 'Active' : 'Inactive' }}</td>
+                        <td>
+                            <a href='{{ route('employees.edit', $employee->id) }}' class='btn btn-warning'>Edit</a>
+                        </td>
                     </tr>
                 @endforeach
             @else

@@ -5,7 +5,7 @@
 @section('content')
     <div class='d-flex justify-content-between align-items-center mt-5'>
         <h1>Store List</h1>
-        <a href='{{ route('stores.create') }}'class='btn btn-primary'>Add Store</a>
+        <a href='{{ route('stores.create') }}' class='btn btn-primary'>Add Store</a>
     </div>
     <table class='table table-striped'>
         <thead>
@@ -24,6 +24,7 @@
                         <td>{{ $store->name }}</td>
                         <td>{{ $store->address }}</td>
                         <td>
+                            <a href='{{ route('stores.edit', $store->store_id) }}' class='btn btn-warning'>Edit</a>
 
                         </td>
 

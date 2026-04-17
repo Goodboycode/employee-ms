@@ -39,9 +39,11 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
-                    <select class="form-select" aria-label="Default select">
-                        <option selected>Unassigned</option>
-                        <option value='{{ $stores->store_id }}'>{{ $store->name }}</option>
+                    <select class="form-select" aria-label="Default select" name='store_id'>
+
+                        @foreach ($stores as $store)
+                            <option value='{{ $store->store_id }}'>{{ $store->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -52,14 +54,14 @@
             <div class="mb-3">
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadioDefault1"
+                        checked>
                     <label class="form-check-label" for="flexRadioDefault1">
                         Active
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadioDefault2"
-                        checked>
+                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Inactive
                     </label>
