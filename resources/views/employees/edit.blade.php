@@ -6,7 +6,17 @@
     <div class="container mt-5 mb-3">
         <a href="{{ route('employees.index') }}" class='btn btn-warning mb-2'>Back</a>
         <h1>Update Employee</h1>
-        <form action='{{ route('employees.update', $employee->id) }}' method='POST'>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action='{{ route('employees.update', $employee->employee_id) }}' method='POST'>
             @csrf
             @method('PUT')
             <div class="col-md-3 mb-3">
@@ -49,6 +59,7 @@
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select"
                         value='{{ old('store_id', $employee->store_id) }}'>
+                        <option value='{{is_null($stores) ? 'selected':''}}'>Unassigned</option>
                         @foreach ($stores as $store)
                             <option value="{{ $store->store_id }}">{{ $store->name }}</option>
                         @endforeach

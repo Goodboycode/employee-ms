@@ -33,7 +33,6 @@ class StoreController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'store_id' => 'required|unique:stores,store_id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255'
         ]);

@@ -6,7 +6,7 @@
     <div class="container mt-5 mb-5">
         <a href="{{ route('employees.index') }}" class='btn btn-warning mb-2'>Back</a>
         <h1>Preview Employee</h1>
-        <form action='{{ route('employees.destroy', $employee->id) }}' method='POST'>
+        <form action='{{ route('employees.destroy', $employee->employee_id) }}' method='POST'>
             @method('DELETE')
             @csrf
             <div class="col-md-3 mb-3">
@@ -48,9 +48,11 @@
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select" @disabled(true)>
-                        @foreach ($stores as $store)
-                            <option value="{{ old('store_id', $employee->store_id)}}" {{$employee->store_id ===$store->store_id ? 'checked' : ''}}>{{ $store->name }}</option>
-                        @endforeach
+                        @if ($employee->store)
+                            <option value='{{ $employee->store->store_id }}' selected>{{ $employee->store->name }}</option>
+                        @else
+                            <option value='' selected>Unassigned</option>
+                        @endif
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -75,7 +77,7 @@
                     </label>
                 </div>
             </div>
-                    <a href="{{ route('employees.destroy',$employee->id) }}" class='btn btn-danger'>Delete</a>
+            <button type="submit" class="btn btn-danger">Delete</button>
         </form>
 
     </div>

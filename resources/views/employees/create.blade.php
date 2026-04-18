@@ -8,10 +8,10 @@
         <h1>Add Employee</h1>
         <form action='{{ route('employees.store') }}' method='POST'>
             @csrf
-            <div class="col-md-3 mb-3">
+            {{-- <div class="col-md-3 mb-3">
                 <label for="employee_id" class="form-label">Employee Id</label>
                 <input type="text" class="form-control" id="employee_id" name="employee_id">
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="first_name" class="form-label">First Name</label>
@@ -41,7 +41,7 @@
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select" name='store_id'>
-
+                        <option value='{{is_null($stores) ? 'selected':''}}'>Unassigned</option>
                         @foreach ($stores as $store)
                             <option value='{{ $store->store_id }}'>{{ $store->name }}</option>
                         @endforeach

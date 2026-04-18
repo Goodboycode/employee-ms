@@ -37,22 +37,19 @@ class EmployeeController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'employee_id' => 'required|unique:employees,employee_id',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:employees,email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'store_id'=> 'required|exists:stores,store_id',
+            'store_id' => 'nullable|exists:stores,store_id',
             'position' => 'required|string|max:255',
-            'is_active' => 'required|boolean'
+            'is_active' => 'required|boolean',
         ]);
 
         // Create and save the new employee into the database and redirect back to the employee list with a success message
         Employee::create($validatedData);
-        return redirect()->route('employees.index')->with('success','Employee created successfully');
-            
-
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully');
     }
 
     /**
@@ -60,10 +57,10 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        // $employee is already resolved by the framework. 
+        // $employee is already resolved by the framework.
         // If the ID doesn't exist, Laravel throws a 404 automatically.
         $stores = Store::all();
-        return view('employees.show', compact('employee','stores'));
+        return view('employees.show', compact('employee', 'stores'));
     }
 
     /**
@@ -71,10 +68,10 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        // $employee is already resolved by the framework. 
+        // $employee is already resolved by the framework.
         // If the ID doesn't exist, Laravel throws a 404 automatically.
         $stores = Store::all();
-        return view('employees.edit', compact('employee','stores'));
+        return view('employees.edit', compact('employee', 'stores'));
     }
 
     /**
@@ -88,14 +85,15 @@ class EmployeeController extends Controller
             'last_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'store_id'=> 'required|exists:stores,store_id',
+            'store_id' => 'nullable|exists:stores,store_id',
             'position' => 'required|string|max:255',
-            'is_active' => 'required|boolean'
+            'is_active' => 'required|in:1,0',
         ]);
 
         // Update the employee and redirect back to the employee list with a success message
+        
         $employee->update($validatedData);
-        return redirect()->route('employees.show')->with('success', 'Employee updated successfully');
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -104,9 +102,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         // The employee is permanently removed from the 'employees' table and redirected back to the employee list with a success message
-        $employee->delete();
-        return redirect()->route('employees.index')->with('success','Employee successfully deleted');
+        $employee->delete($employee);
+        return redirect()->route('employees.index')->with('success', 'Employee successfully deleted');
     }
-
-
 }
