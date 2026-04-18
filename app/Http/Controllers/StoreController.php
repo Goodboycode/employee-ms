@@ -12,7 +12,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        // Fetch all employees and pass them to the index view
+        // Fetch all stores and pass them to the index view
         $stores = Store::all();
         return view('stores.index', compact('stores'));
     }
@@ -33,7 +33,6 @@ class StoreController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'store_id' => 'required|unique:stores,store_id',
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255'
         ]);

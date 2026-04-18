@@ -9,8 +9,9 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'store_id';
+
     protected $fillable = [
-        'store_id',
         'name',
         'address'
     ];

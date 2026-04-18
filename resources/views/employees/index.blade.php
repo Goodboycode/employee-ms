@@ -3,8 +3,12 @@
 @section('title', 'Employee List')
 
 @section('content')
-    
-    <div class='d-flex justify-content-between align-items-center mt-5 mb-3'>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{route('stores.index')}}">Stores</a>
+        </div>
+    </nav>
+    <div class='d-flex justify-content-between align-items-center mt-2 mb-3'>
         <h1>Employee List</h1>
         <a href='{{ route('employees.create') }}' class='btn btn-primary'>Add Employee</a>
     </div>
@@ -26,14 +30,12 @@
                         <td>{{ $employee->employee_id }}</td>
                         <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
                         <td>{{ $employee->email }}</td>
-                        @foreach ($stores as $store)
-                            @if ($store->store_id == $employee->store_id)
-                                <td>{{ $store->name }}</td>
-                            @endif
-                        @endforeach
+
+                        <td>{{ $employee->store->name ?? 'Unassigned' }}</td>
                         <td>{{ $employee->position }}</td>
                         <td>
-                            <a href='{{ route('employees.edit', $employee->id) }}' class='btn btn-warning'>Edit</a>
+                            <a href='{{ route('employees.show', $employee->employee_id) }}' class='btn btn-info'>Preview</a>
+                            <a href='{{ route('employees.edit', $employee->employee_id) }}' class='btn btn-warning'>Edit</a>
                         </td>
                     </tr>
                 @endforeach
