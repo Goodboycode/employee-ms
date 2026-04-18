@@ -42,7 +42,7 @@ class EmployeeController extends Controller
             'email' => 'required|email|unique:employees,email',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'store_id' => 'nullable|exists:stores,store_id',
+            'store_id' => 'required|exists:stores,store_id',
             'position' => 'required|string|max:255',
             'is_active' => 'required|boolean',
         ]);
@@ -59,8 +59,8 @@ class EmployeeController extends Controller
     {
         // $employee is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-
-        return view('employees.show', compact('employee'));
+        $stores = Store::all();
+        return view('employees.show', compact('employee', 'stores'));
     }
 
     /**
@@ -74,18 +74,19 @@ class EmployeeController extends Controller
         return view('employees.edit', compact('employee', 'stores'));
     }
 
-    /**
+    /** 
      * Update the specified resource in storage.
      */
     public function update(Request $request, Employee $employee)
     {
+        // dd($request);
         // Validate the incoming request data
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'store_id' => 'nullable|exists:stores,store_id',
+            'store_id' => 'required|exists:stores,store_id',
             'position' => 'required|string|max:255',
             'is_active' => 'required|in:1,0',
         ]);

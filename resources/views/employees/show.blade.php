@@ -48,11 +48,10 @@
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select" @disabled(true)>
-                        @if ($employee->store)
-                            <option value='{{ $employee->store->store_id }}' selected>{{ $employee->store->name }}</option>
-                        @else
-                            <option value='' selected>Unassigned</option>
-                        @endif
+                        @foreach ($stores as $store)
+                            <option value="{{ old('store_id', $employee->store_id) }}" selected>{{ $store->name }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -64,21 +63,42 @@
             <div class="mb-3">
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadio1" disabled {{$employee->is_active == 1 ? 'checked': ''}}>
-                    <label class="form-check-label" for="flexRadio1" >
+                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadio1" disabled
+                        {{ $employee->is_active == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexRadio1">
                         Active
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active"
-                        value='0' id="flexRadio2"  disabled {{$employee->is_active == 0 ? 'checked': ''}}>
+                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadio2" disabled
+                        {{ $employee->is_active == 0 ? 'checked' : '' }}>
                     <label class="form-check-label" for="flexRadio2">
                         Inactive
                     </label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Delete</button>
 
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this employee? This action cannot be undone.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection

@@ -44,8 +44,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" name="phone"
-                        value='{{ old('phone', $employee->phone) }}'>
+                    <input type="text" class="form-control" id="phone" value='{{ old('phone', $employee->phone) }}'>
                 </div>
 
             </div>
@@ -58,10 +57,12 @@
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select"
-                        value='{{ old('store_id', $employee->store_id) }}'>
-                        <option value='{{is_null($stores) ? 'selected':''}}'>Unassigned</option>
+                        value='{{ old('store_id', $employee->store_id) }}' name='store_id'>
                         @foreach ($stores as $store)
-                            <option value="{{ $store->store_id }}">{{ $store->name }}</option>
+                            <option value="{{ old('store_id', $store->store_id) }}"
+                                {{ old('store_id', $employee->store_id) === $store->store_id ? 'selected' : '' }}>
+                                {{ $store->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -75,14 +76,14 @@
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadio1"
-                    {{$employee->is_active == 1 ? 'checked': ''}}>
-                    <label class="form-check-label" for="flexRadio1" >
+                        {{ $employee->is_active == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="flexRadio1">
                         Active
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active"
-                        value='0' id="flexRadio2" {{$employee->is_active == 0 ? 'checked': ''}}>
+                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadio2"
+                        {{ $employee->is_active == 0 ? 'checked' : '' }}>
                     <label class="form-check-label" for="flexRadio2">
                         Inactive
                     </label>
