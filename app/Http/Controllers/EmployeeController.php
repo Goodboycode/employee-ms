@@ -62,8 +62,8 @@ class EmployeeController extends Controller
     {
         // $employee is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-
-        return view('employees.show', compact('employee'));
+        $stores = Store::all();
+        return view('employees.show', compact('employee','stores'));
     }
 
     /**
@@ -95,7 +95,7 @@ class EmployeeController extends Controller
 
         // Update the employee and redirect back to the employee list with a success message
         $employee->update($validatedData);
-        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+        return redirect()->route('employees.show')->with('success', 'Employee updated successfully');
     }
 
     /**

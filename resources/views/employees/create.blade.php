@@ -55,15 +55,15 @@
             <div class="mb-3">
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadioDefault1"
+                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexradio1"
                         checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <label class="form-check-label" for="flexradio1">
                         Active
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="is_active" value='0' id="flexRadio2">
+                    <label class="form-check-label" for="flexRadio2">
                         Inactive
                     </label>
                 </div>

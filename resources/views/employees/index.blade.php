@@ -33,6 +33,7 @@
                         @endforeach
                         <td>{{ $employee->position }}</td>
                         <td>
+                            <a href='{{ route('employees.show', $employee->id) }}' class='btn btn-info'>Preview</a>
                             <a href='{{ route('employees.edit', $employee->id) }}' class='btn btn-warning'>Edit</a>
                         </td>
                     </tr>

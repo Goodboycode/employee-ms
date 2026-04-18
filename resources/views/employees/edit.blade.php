@@ -3,11 +3,12 @@
 @section('title', 'Edit Employee')
 
 @section('content')
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-3">
         <a href="{{ route('employees.index') }}" class='btn btn-warning mb-2'>Back</a>
         <h1>Update Employee</h1>
-        <form action='{{ route('employees.update', $employee->id) }}' method='PUT'>
+        <form action='{{ route('employees.update', $employee->id) }}' method='POST'>
             @csrf
+            @method('PUT')
             <div class="col-md-3 mb-3">
                 <label for="employee_id" class="form-label">Employee Id</label>
                 <input type="text" class="form-control" value='{{ old('employee_id', $employee->employee_id) }}'
@@ -62,15 +63,16 @@
             <div class="mb-3">
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="is_active" value='1' id="flexRadio1"
+                    {{$employee->is_active == 1 ? 'checked': ''}}>
+                    <label class="form-check-label" for="flexRadio1" >
                         Active
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="is_active"
-                        value='{{ old('is_active', $employee->is_active) }}' id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
+                        value='0' id="flexRadio2" {{$employee->is_active == 0 ? 'checked': ''}}>
+                    <label class="form-check-label" for="flexRadio2">
                         Inactive
                     </label>
                 </div>
