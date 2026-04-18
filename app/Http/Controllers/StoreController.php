@@ -44,17 +44,6 @@ class StoreController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Store $store)
-    {
-        // $task is already resolved by the framework. 
-        // If the ID doesn't exist, Laravel throws a 404 automatically.
-
-        return view('stores.show', compact('store'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Store $store)

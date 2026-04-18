@@ -56,17 +56,6 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Employee $employee)
-    {
-        // $employee is already resolved by the framework. 
-        // If the ID doesn't exist, Laravel throws a 404 automatically.
-
-        return view('employees.show', compact('employee'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Employee $employee)
