@@ -3,7 +3,8 @@
 @section('title', 'Create Stores')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 mb-3">
+        <a href="{{ route('stores.index') }}" class='btn btn-warning mb-2'>Back</a>
         <h1>Add Store</h1>
         <form action='{{ route('stores.store') }}' method='POST'>
             @csrf

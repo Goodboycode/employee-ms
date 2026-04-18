@@ -3,7 +3,8 @@
 @section('title', 'Employee List')
 
 @section('content')
-    <div class='d-flex justify-content-between align-items-center'>
+    
+    <div class='d-flex justify-content-between align-items-center mt-5 mb-3'>
         <h1>Employee List</h1>
         <a href='{{ route('employees.create') }}' class='btn btn-primary'>Add Employee</a>
     </div>

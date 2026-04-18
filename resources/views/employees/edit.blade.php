@@ -3,7 +3,8 @@
 @section('title', 'Edit Employee')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
+        <a href="{{ route('employees.index') }}" class='btn btn-warning mb-2'>Back</a>
         <h1>Update Employee</h1>
         <form action='{{ route('employees.update', $employee->id) }}' method='PUT'>
             @csrf
