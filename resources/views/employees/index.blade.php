@@ -62,7 +62,7 @@
                         <td>{{ $employee->position }}</td>
                         <td>
                             <a href='{{ route('employees.show', $employee->employee_id) }}' class='btn btn-info'>Preview</a>
-                            <a href='{{ route('employees.edit', $employee->employee_id) }}' class='btn btn-warning'>Edit</a>
+                            <a href='{{ route('employees.edit', $employee->employee_id) }}' class='btn btn-primary'>Edit</a>
                         </td>
                     </tr>
                 @endforeach

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-5 mb-3">
-        <a href="{{ route('employees.index') }}" class='btn btn-warning mb-2'>Back</a>
+        <a href="{{ route('employees.index') }}" class='btn btn-secondary mb-2'>Back</a>
         <h1>Add Employee</h1>
         <form action='{{ route('employees.store') }}' method='POST'>
             @csrf

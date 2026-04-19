@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-5 mb-3">
-        <a href="{{ route('stores.index') }}" class='btn btn-warning mb-2'>Back</a>
+        <a href="{{ route('stores.index') }}" class='btn btn-secondary mb-2'>Back</a>
         <h1>Edit Store</h1>
         <form action='{{ route('stores.update', $store->store_id) }}' method='POST'>
             @method('PUT')
@@ -27,7 +27,7 @@
                     value='{{ old('address', $store->address) }}'>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-warning">Save Changes</button>
         </form>
     </div>
 @endsection

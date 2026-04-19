@@ -30,12 +30,11 @@
                         <td>{{ $store->name }}</td>
                         <td>{{ $store->address }}</td>
                         <td></td>
+
                         <td>
                             <a href='{{ route('stores.show', $store->store_id) }}' class='btn btn-info'>Preview</a>
-                            <a href='{{ route('stores.edit', $store->store_id) }}' class='btn btn-warning'>Edit</a>
-
+                            <a href='{{ route('stores.edit', $store->store_id) }}' class='btn btn-primary'>Edit</a>
                         </td>
-
                     </tr>
                 @endforeach
             @else

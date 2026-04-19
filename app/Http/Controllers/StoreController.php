@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use Illuminate\Http\Request;
+use App\Models\Employee;
 
 class StoreController extends Controller
 {
@@ -14,7 +15,9 @@ class StoreController extends Controller
     {
         // Fetch all stores and pass them to the index view
         $stores = Store::all();
-        return view('stores.index', compact('stores'));
+        $employees = Employee::all();
+        $count = 0;
+        return view('stores.index', compact('stores','count','employees'));
     }
 
     /**
@@ -49,8 +52,9 @@ class StoreController extends Controller
     {
         // $store is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-
-        return view('stores.show', compact('store'));
+        $employees = Employee::all();
+        $count = 0;
+        return view('stores.show', compact('store','employees','count'));
     }
 
     /**
@@ -88,4 +92,15 @@ class StoreController extends Controller
         $store->delete();
         return redirect()->route('stores.index')->with('success','store successfully deleted');
     }
+
+    // public function counter($store_id){
+    //     $employees = Employee::all();
+    //     $count = 0;
+    //     foreach ($employees as $employee) {
+    //         if ($employee->store_id == $store_id) {
+    //             $count++;
+    //         }
+    //     }
+    //     return $count;
+    // }
 }
