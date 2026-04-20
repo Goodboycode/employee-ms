@@ -29,13 +29,6 @@
                     readonly>
             </div>
 
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeesModal">
-                    List of Employees
-                </button>
-            </div>
-
-
             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Delete</button>
 
@@ -59,52 +52,6 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal List of Employees -->
-            <div class="modal fade" id="employeesModal" tabindex="-1" aria-labelledby="employeesModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="employeesModalLabel">List of Employees</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-striped-columns">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($employees as $employee)
-                                        @if ($employee->store_id == $store->store_id)
-                                            {{-- {{ $count++ }} --}}
-                                            <tr>
-                                                <th scope="row">{{ $employee->employee_id }}</th>
-                                                <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
-                                                <td>{{ $employee->position }}</td>
-                                                <td>{{ $employee->is_active == 1 ? 'Active' : 'Inactive' }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                    {{-- @if ($count == 0)
-                                        <tr>
-                                            <td colspan="4" class="text-center">No employees assigned to this store.</td>
-                                        </tr>
-                                    @endif --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

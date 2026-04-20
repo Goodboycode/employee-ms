@@ -36,19 +36,23 @@
         </div>
     </div>
 
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Assigned Store</th>
-                <th>Position</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if ($employees->isNotEmpty())
+    @if($employees->isEmpty())
+        <div class="alert alert-info" role="alert">
+            No employees found. Please add an employee to see them listed here.
+        </div>
+    @else
+        <table class='table table-striped'>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Assigned Store</th>
+                    <th>Position</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach ($employees as $employee)
                     <tr>
                         <td>{{ $employee->employee_id }}</td>
@@ -66,11 +70,7 @@
                         </td>
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td colspan="6" class="text-center">No employees found.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    @endif
 @endsection

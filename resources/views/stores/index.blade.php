@@ -12,24 +12,33 @@
         <h1>Store List</h1>
         <a href='{{ route('stores.create') }}' class='btn btn-primary'>Add Store</a>
     </div>
-    <table class='table table-striped'>
-        <thead>
-            <tr>
-                <th>Store ID</th>
-                <th>Store Name</th>
-                <th>Address</th>
-                <th>Assigned Users</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if ($stores->isNotEmpty())
+    @if ($stores->isEmpty())
+        <div class="alert alert-info" role="alert">
+            No stores found. Please add a store to see them listed here.
+        </div>
+    @else
+        <table class='table table-striped'>
+            <thead>
+                <tr>
+                    <th>Store ID</th>
+                    <th>Store Name</th>
+                    <th>Address</th>
+                    <th>Assigned Users</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach ($stores as $store)
                     <tr>
                         <td>{{ $store->store_id }}</td>
                         <td>{{ $store->name }}</td>
                         <td>{{ $store->address }}</td>
-                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                data-bs-target="#employeesModal">
+                                View <span class="badge bg-danger ">{{ $store->employees_count }}</span>
+                            </button>
+                        </td>
 
                         <td>
                             <a href='{{ route('stores.show', $store->store_id) }}' class='btn btn-info'>Preview</a>
@@ -37,11 +46,41 @@
                         </td>
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td colspan="5" class="text-center">No stores found.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    @endif
+
+    <!-- Modal List of Employees -->
+    <div class="modal fade" id="employeesModal" tabindex="-1" aria-labelledby="employeesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="employeesModalLabel">List of Employees</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($employees->)
+                                <tr>
+                                    <td colspan="4" class="text-center">No employees assigned to this store.</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
