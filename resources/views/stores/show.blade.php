@@ -16,17 +16,17 @@
             </div>
             <div class="row">
                 <div class="col-md-5 mb-3">
-                    <label for="name" class="form-label">Store Name</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        value='{{ old('name', $store->name) }}' readonly>
+                    <label for="store_name" class="form-label">Store Name</label>
+                    <input type="text" class="form-control" id="store_name" name="store_name"
+                        value='{{ old('store_name', $store->store_name) }}' readonly>
                 </div>
             </div>
-
-
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control" id="address" name="address" value='{{ $store->address }}'
                     readonly>
+
+                <p class="h3 mt-3">Assigned Staffs</p>
             </div>
             @if ($store->employees->count() > 0)
                 <table class="table table-striped-columns">

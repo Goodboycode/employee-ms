@@ -15,40 +15,56 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="first_name" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name">
+                    <input type="text" value='{{ old('first_name') }}'
+                        class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name">
+                    @error('first_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="last_name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name">
+                    <input type="text" value='{{ old('last_name') }}'
+                        class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name">
+                    @error('last_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" value='{{ old('email') }}'
+                        class="form-control @error('email') is-invalid @enderror" id="email" name="email">
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" name="phone">
+                    <input type="text" value='{{ old('phone') }}' class="form-control" id="phone" name="phone">
                 </div>
 
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" name="address">
+                <input type="text" value='{{ old('address') }}' class="form-control" id="address" name="address">
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select" name='store_id'>
                         @foreach ($stores as $store)
-                            <option value='{{ $store->store_id }}'>{{ $store->name }}</option>
+                            <option value='{{ $store->store_id }}'>{{ $store->store_name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="position" class="form-label">Position</label>
-                    <input type="text" class="form-control" id="position" name="position">
+                    <input type="text" value='{{ old('position') }}'
+                        class="form-control @error('position') is-invalid @enderror" id="position" name="position">
+                    @error('position')
+                        <div class='text-danger'>{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3">

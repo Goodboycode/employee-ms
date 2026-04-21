@@ -9,14 +9,20 @@
         <form action='{{ route('stores.store') }}' method='POST'>
             @csrf
             <div class="col-md-5 mb-3">
-                <label for="name" class="form-label">Store Name</label>
-                <input type="text" class="form-control" id="name" name="name">
+
+                <label for="store_name" class="form-label">Store Name</label>
+                <input type="text" value='{{ old('store_name') }}'
+                    class="form-control @error('store_name') is-invalid @enderror" id="store_name" name="store_name">
+                @error('store_name')
+                    <div class='text-danger'>{{ $message }}</div>
+                @enderror
+
             </div>
 
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" name="address">
+                <input type="text" value='{{ old('address') }}' class="form-control" id="address" name="address">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

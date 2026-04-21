@@ -35,7 +35,7 @@ class StoreController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'store_name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255'
         ]);
 
@@ -72,7 +72,7 @@ class StoreController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'store_name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255'
         ]);
 

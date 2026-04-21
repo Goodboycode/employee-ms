@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id('store_id')->startingValue(100);
-            $table->string('name');
+            $table->string('store_name');
             $table->string('address')->nullable();
             $table->timestamps();
         });

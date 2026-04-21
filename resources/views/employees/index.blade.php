@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    @if($employees->isEmpty())
+    @if ($employees->isEmpty())
         <div class="alert alert-info" role="alert">
             No employees found. Please add an employee to see them listed here.
         </div>
@@ -60,7 +60,7 @@
                         <td>{{ $employee->email }}</td>
                         @foreach ($stores as $store)
                             @if ($store->store_id === $employee->store_id)
-                                <td>{{ $store->name }}</td>
+                                <td>{{ $store->store_name }}</td>
                             @endif
                         @endforeach
                         <td>{{ $employee->position }}</td>

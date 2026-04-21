@@ -29,7 +29,7 @@
                     <th>Store ID</th>
                     <th>Store Name</th>
                     <th>Address</th>
-                    <th>Assigned Users</th>
+                    <th>Assigned Staffs</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                 @foreach ($stores as $store)
                     <tr>
                         <td>{{ $store->store_id }}</td>
-                        <td>{{ $store->name }}</td>
+                        <td>{{ $store->store_name }}</td>
                         <td>{{ $store->address }}</td>
                         <td>{{ $store->employees_count }}</td>
 

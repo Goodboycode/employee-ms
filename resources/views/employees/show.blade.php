@@ -49,7 +49,7 @@
                     <label class='mb-2'>Assigned Store</label>
                     <select class="form-select" aria-label="Default select" @disabled(true)>
                         @foreach ($stores as $store)
-                            <option value="{{ old('store_id', $employee->store_id) }}" selected>{{ $store->name }}
+                            <option value="{{ old('store_id', $employee->store_id) }}" selected>{{ $store->store_name }}
                             </option>
                         @endforeach
                     </select>

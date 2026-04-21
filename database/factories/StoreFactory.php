@@ -18,7 +18,7 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->randomElement(['NovaMart', 'GreenLeaf Store', 'Urban Basket', 'BrightBuy Shop', 'QuickPick Market', 'Sunrise Goods', 'PrimeChoice Store', 'BlueCart Mart', 'Everyday Essentials', 'Metro Supply Hub']),
+            'Store_name' => $this->faker->randomElement(['NovaMart', 'GreenLeaf Store', 'Urban Basket', 'BrightBuy Shop', 'QuickPick Market', 'Sunrise Goods', 'PrimeChoice Store', 'BlueCart Mart', 'Everyday Essentials', 'Metro Supply Hub']),
             'address' => $this->faker->city(),
         ];
     }

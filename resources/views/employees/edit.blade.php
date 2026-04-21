@@ -61,7 +61,7 @@
                         @foreach ($stores as $store)
                             <option value="{{ old('store_id', $store->store_id) }}"
                                 {{ old('store_id', $employee->store_id) === $store->store_id ? 'selected' : '' }}>
-                                {{ $store->name }}
+                                {{ $store->store_name }}
                             </option>
                         @endforeach
                     </select>
