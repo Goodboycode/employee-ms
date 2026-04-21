@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call([
             StoreSeeder::class,
-            // EmployeeSeeder::class,
+            EmployeeSeeder::class,
         ]);
 
 
