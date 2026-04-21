@@ -51,9 +51,8 @@ class StoreController extends Controller
     {
         // $store is already resolved by the framework. 
         // If the ID doesn't exist, Laravel throws a 404 automatically.
-        $employees = Employee::all();
-        $count = 0;
-        return view('stores.show', compact('store','employees','count'));
+        $employees = $store->employees;
+        return view('stores.show', compact('store','employees'));
     }
 
     /**
@@ -91,15 +90,4 @@ class StoreController extends Controller
         $store->delete();
         return redirect()->route('stores.index')->with('success','store successfully deleted');
     }
-
-    // public function counter($store_id){
-    //     $employees = Employee::all();
-    //     $count = 0;
-    //     foreach ($employees as $employee) {
-    //         if ($employee->store_id == $store_id) {
-    //             $count++;
-    //         }
-    //     }
-    //     return $count;
-    // }
 }
