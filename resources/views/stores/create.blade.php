@@ -1,8 +1,8 @@
 @extends('layouts.form')
 
 @section('title', 'Create Stores')
-
 @section('content')
+
     <div class="container mt-5 mb-3">
         <a href="{{ route('stores.index') }}" class='btn btn-secondary mb-2'>Back</a>
         <h1>Add Store</h1>

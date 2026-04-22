@@ -1,7 +1,6 @@
 @extends('layouts.form')
 
 @section('title', 'Update Store')
-
 @section('content')
     <div class="container mt-5 mb-3">
         <a href="{{ route('stores.index') }}" class='btn btn-secondary mb-2'>Back</a>

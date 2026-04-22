@@ -88,6 +88,6 @@ class StoreController extends Controller
     {
         // The store is permanently removed from the 'stores' table and redirected back to the store list with a success message
         $store->delete();
-        return redirect()->route('stores.index')->with('success','store successfully deleted');
+        return redirect()->route('stores.index')->with('success','Store successfully deleted');
     }
 }

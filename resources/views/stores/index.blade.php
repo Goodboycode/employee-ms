@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'Store List')
-
 @section('content')
     {{-- Navigation bar with link to employees index page --}}
     <nav class="navbar bg-body-tertiary">
