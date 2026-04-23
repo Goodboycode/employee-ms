@@ -4,16 +4,20 @@
 
 @section('content')
     <div class="container mt-5 mb-5">
+        {{-- Back button to return to the employee list --}}
         <a href="{{ route('employees.index') }}" class='btn btn-secondary mb-2'>Back</a>
         <h1>Preview Employee</h1>
+        {{-- Form for deleting the employee, fields are read-only for preview --}}
         <form action='{{ route('employees.destroy', $employee->employee_id) }}' method='POST'>
             @method('DELETE')
             @csrf
+            {{-- Employee ID field --}}
             <div class="col-md-3 mb-3">
                 <label for="employee_id" class="form-label">Employee Id</label>
                 <input type="text" class="form-control" value='{{ old('employee_id', $employee->employee_id) }}'
                     id="employee_id" name="employee_id" aria-label="Disabled input" readonly>
             </div>
+            {{-- Employee Name fields --}}
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="first_name" class="form-label">First Name</label>
@@ -26,6 +30,7 @@
                         id="last_name" name="last_name" readonly>
                 </div>
             </div>
+            {{-- Employee Contact Information --}}
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -39,11 +44,13 @@
                 </div>
 
             </div>
+            {{-- Employee Address field --}}
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control" id="address" name="address"
                     value='{{ old('address', $employee->address) }}' readonly>
             </div>
+            {{-- Employee Assignment and Position --}}
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class='mb-2'>Assigned Store</label>
@@ -60,6 +67,7 @@
                         value='{{ old('position', $employee->position) }}' readonly>
                 </div>
             </div>
+            {{-- Employee Status (Active/Inactive) --}}
             <div class="mb-3">
                 <label for="is_active" class="form-label">Status</label>
                 <div class="form-check">
@@ -77,10 +85,11 @@
                     </label>
                 </div>
             </div>
+            {{-- Delete button triggers the confirmation modal --}}
             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Delete</button>
 
-            <!-- Modal -->
+            {{-- Delete Confirmation Modal --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

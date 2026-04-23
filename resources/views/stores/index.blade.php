@@ -15,6 +15,21 @@
         <a href='{{ route('stores.create') }}' class='btn btn-primary'>Add Store</a>
     </div>
 
+    {{-- Search field --}}
+    <div class="col-md-3 mb-3 d-flex align-items-center">
+        <span class='position-absolute text-muted' style='top:21%; left:85px; transform: translateY(-50%); z-index:10;'>
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </i>
+        </span>
+        <input class="form-control ps-5" type="search" placeholder='Search'>
+        <button type='submit' class="btn btn-primary">Search</button>
+    </div>
+
     {{-- Check if there are no stores to display --}}
     @if ($stores->isEmpty())
         <div class="alert alert-info" role="alert">
@@ -22,7 +37,8 @@
         </div>
     @else
         {{-- Table displaying the list of stores --}}
-        <table class='table table-striped'>
+        <table class='table
+            table-striped'>
             <thead>
                 <tr>
                     <th>Store ID</th>

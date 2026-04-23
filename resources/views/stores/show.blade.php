@@ -3,16 +3,20 @@
 @section('title', 'Preview Store')
 @section('content')
     <div class="container mt-5 mb-3">
+        {{-- Back button to return to the store list --}}
         <a href="{{ route('stores.index') }}" class='btn btn-secondary mb-2'>Back</a>
         <h1>Preview Store</h1>
+        {{-- Form for deleting the store, fields are read-only for preview --}}
         <form id="deleteForm" action='{{ route('stores.destroy', $store->store_id) }}' method='POST'>
             @method('DELETE')
             @csrf
+            {{-- Store ID field --}}
             <div class="col-md-3 mb-3">
                 <label for="store_id" class="form-label">Store ID</label>
                 <input type="text" class="form-control" id="store_id" name="store_id"
                     value='{{ old('store_id', $store->store_id) }}' readonly>
             </div>
+            {{-- Store Name field --}}
             <div class="row">
                 <div class="col-md-5 mb-3">
                     <label for="store_name" class="form-label">Store Name</label>
@@ -20,6 +24,7 @@
                         value='{{ old('store_name', $store->store_name) }}' readonly>
                 </div>
             </div>
+            {{-- Store Address and Assigned Staffs header --}}
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control" id="address" name="address" value='{{ $store->address }}'
@@ -27,7 +32,9 @@
 
                 <p class="h3 mt-3">Assigned Staffs</p>
             </div>
+            {{-- Check if there are any employees assigned to this store --}}
             @if ($store->employees->count() > 0)
+                {{-- Table displaying the assigned employees --}}
                 <table class="table table-striped-columns">
                     <thead>
                         <tr>
@@ -54,11 +61,12 @@
                 </div>
             @endif
 
+            {{-- Delete button triggers the confirmation modal --}}
             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Delete</button>
         </form>
 
-        <!-- Modal Delete -->
+        {{-- Delete Confirmation Modal --}}
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
