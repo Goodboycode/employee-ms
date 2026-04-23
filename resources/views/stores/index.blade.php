@@ -17,7 +17,7 @@
 
     {{-- Search field --}}
     <div class="col-md-3 mb-3 d-flex align-items-center">
-        <span class='position-absolute text-muted' style='top:21%; left:85px; transform: translateY(-50%); z-index:10;'>
+        <span class='position-absolute text-muted' style=' z-index:10;'>
             <i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-search" viewBox="0 0 16 16">
@@ -26,8 +26,7 @@
                 </svg>
             </i>
         </span>
-        <input class="form-control ps-5" type="search" placeholder='Search'>
-        <button type='submit' class="btn btn-primary">Search</button>
+        <input id="search-input" onkeyup="searchFunction()" class="form-control ps-5" type="search" placeholder='Search'>
     </div>
 
     {{-- Check if there are no stores to display --}}
@@ -67,4 +66,28 @@
             </tbody>
         </table>
     @endif
+
+    <script>
+        function searchFunction() {
+            const input = document.getElementById('search-input');
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector('table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i<rows.length; i++) {
+                const td = rows[i].getElementsByTagName('td')[1];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    rows[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+                    // if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    //     rows[i].style.display = '';
+                    // } else {
+                    //     rows[i].style.display = 'none';
+                    // }
+                }
+
+            }
+        }
+    </script>
+
 @endsection
