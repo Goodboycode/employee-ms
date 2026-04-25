@@ -116,10 +116,9 @@
             const table = document.querySelector('table');
             const rows = table.getElementsByTagName('tr');
 
-            for (let i = 0; i < rows.length; i++) {
-                const td = rows[i].getElementsByTagName('td')[1];
-                if (td) {
-                    const txtValue = td.textContent || td.innerText;
+            for (let i = 1; i < rows.length; i++) {
+                const txtValue = rows[i].textContent || rows[i].innerText;
+                if (txtValue) {
                     rows[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
                 }
 
