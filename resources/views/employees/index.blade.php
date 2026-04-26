@@ -61,7 +61,7 @@
             No employees found. Please add an employee to see them listed here.
         </div>
     @else
-        <table class='table table-striped'>
+        <table class='table '>
             <thead>
                 <tr>
                     <th>Employee ID</th>
