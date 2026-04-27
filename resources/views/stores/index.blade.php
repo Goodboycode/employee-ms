@@ -87,7 +87,9 @@
             const table = document.querySelector('table');
             const rows = table.getElementsByTagName('tr');
 
+
             for (let i = 1; i < rows.length; i++) {
+                console.log(rows[i]);
                 const td = rows[i].getElementsByTagName('td')[1];
                 if (td) {
                     const txtValue = td.textContent || td.innerText;

@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     {
         // Fetch all employees and pass them to the index view
         $stores = Store::all();
-        $employees = Employee::all();
+        $employees = Employee::latest()->paginate(5);
         return view('employees.index', compact('employees', 'stores'));
     }
 
