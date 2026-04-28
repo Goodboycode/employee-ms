@@ -11,10 +11,21 @@ class StoreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // Fetch all stores with employee count and pass them to the index view
-        $stores = Store::withCount('employees')->get();
+
+
+        $query = Store::withCount('employees');
+
+        if($request->has('search') && $request->search !=''){
+            $searchTerm = $request->search;
+            $query->where('store_name','LIKE', "%{$searchTerm}%");
+        }
+
+        $stores = $query->paginate(10);
+
+
         $employees = Employee::all();
         return view('stores.index', compact('stores', 'employees'));
     }

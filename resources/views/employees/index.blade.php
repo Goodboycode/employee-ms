@@ -24,7 +24,7 @@
     </div>
 
     {{-- Search field --}}
-    <div class="col-md-3 mb-3 d-flex align-items-center position-relative">
+    <div class="col-md-4 mb-3 d-flex align-items-center position-relative">
         <span class='position-absolute top-50 ms-4 start-10 translate-middle text-muted'>
             <i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -34,7 +34,11 @@
                 </svg>
             </i>
         </span>
-        <input id="search-input" onkeyup="searchFunction()" class="form-control ps-5" placeholder='Search'>
+        <form class="d-flex" action="{{ route('employees.index') }}" method='GET'>
+            <input name='search' id="search-input" class="form-control ps-5" value="{{ request('search') }}"
+                placeholder='Search'>
+            <button type='submit' class='btn btn-primary'>Find</button>
+        </form>
     </div>
 
     {{-- Modal for employees with no store --}}
@@ -58,7 +62,7 @@
     {{-- Table for displaying the list of employees --}}
     @if ($employees->isEmpty())
         <div class="alert alert-info" role="alert">
-            No employees found. Please add an employee to see them listed here.
+            No employees found.
         </div>
     @else
         <table class='table '>
@@ -107,9 +111,10 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $employees->appends(['search' => request('search')])->links() }}
     @endif
 
-    <script>
+    <!-- {{-- <script>
         function searchFunction() {
             const input = document.getElementById('search-input');
             const filter = input.value.toLowerCase();
@@ -124,5 +129,5 @@
 
             }
         }
-    </script>
+    </script> --}} -->
 @endsection

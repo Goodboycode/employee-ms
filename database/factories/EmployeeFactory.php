@@ -24,7 +24,7 @@ class EmployeeFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'address' => $this->faker->address(),
             'position' => $this->faker->randomElement(['Store Manager','Assistant Store Manager','Store Supervisor','Sales Associate','Senior Sales Associate','Cashier','Head Cashier','Customer Service Representative','Stock Clerk','Inventory Clerk','Warehouse Associate','Administrative Assistant','Security Guard','Maintenance Staff','Delivery Driver']),
-            'store_id' => $this->faker->numberBetween(100, 104),
+            'store_id' => $this->faker->numberBetween(100, 119),
             'is_active' => $this->faker->boolean()
         ];
     }

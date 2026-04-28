@@ -26,7 +26,11 @@
                 </svg>
             </i>
         </span>
-        <input id="search-input" onkeyup="searchFunction()" class="form-control ps-5" placeholder='Search'>
+        <form class='d-flex align-items-center' action='{{ route('stores.index') }}' method="GET">
+            <input name='search' id="search-input" value='{{ request('search') }}' class="form-control ps-5"
+                placeholder='Search'>
+            <button type="submit" class="btn btn-primary">Find</button>
+        </form>
     </div>
 
     {{-- Check if there are no stores to display --}}
@@ -78,9 +82,11 @@
                 @endforeach
             </tbody>
         </table>
+
+        {{ $stores->appends(['search' => request('search')])->links() }}
     @endif
 
-    <script>
+    <!-- <script>
         function searchFunction() {
             const input = document.getElementById('search-input');
             const filter = input.value.toLowerCase();
@@ -98,6 +104,6 @@
 
             }
         }
-    </script>
+    </script> -->
 
 @endsection
